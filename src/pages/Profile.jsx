@@ -1,4 +1,6 @@
+import { useAuth } from "../context/useAuth";
 export default function Profile() {
+  const { user } = useAuth();
   const stats = [
     {
       icon: "fa-solid fa-fire",
@@ -27,7 +29,7 @@ export default function Profile() {
         <div className="w-20 h-20 rounded-full bg-purple-100 flex items-center justify-center mb-3">
           <i className="fa-solid fa-user text-4xl text-purple-400"></i>
         </div>
-        <h2 className="text-xl font-bold text-gray-800">Mohamed Saleh</h2>
+        <h2 className="text-xl font-bold text-gray-800">{user.name}</h2>
         <p className="text-gray-400 text-sm">MERN Stack Developer</p>
       </div>
 

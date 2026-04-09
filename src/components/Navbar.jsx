@@ -1,6 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/useAuth";
 
 export default function Navbar() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   const linkClass = ({ isActive }) =>
     `flex flex-col items-center gap-1 text-xs transition-colors ${
       isActive ? "text-purple-600" : "text-gray-400 hover:text-purple-400"
@@ -22,6 +31,14 @@ export default function Navbar() {
         <i className="fa-solid fa-user text-xl"></i>
         <span>Profile</span>
       </NavLink>
+
+      <button
+        onClick={handleLogout}
+        className="flex flex-col items-center gap-1 text-xs text-gray-400 hover:text-red-400 transition-colors"
+      >
+        <i className="fa-solid fa-right-from-bracket text-xl"></i>
+        <span>Logout</span>
+      </button>
     </nav>
   );
 }
